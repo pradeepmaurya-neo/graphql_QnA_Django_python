@@ -32,10 +32,8 @@ class AnswersType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
 
-    quizz = graphene.String()
+    all_quizzes = DjangoListField(QuizzesType)
 
-    def resolve_quizz(root, info):
-        return f"This is First Questions"
 
 
 

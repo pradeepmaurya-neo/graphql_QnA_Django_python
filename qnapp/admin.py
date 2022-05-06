@@ -18,5 +18,37 @@ class QuizAdmin(admin.ModelAdmin):
         
     ]
 
+# @admin.register(models.Question)
+
+class AnswerInlineMode(admin.TabularInline):
+    model = models.Answer
+
+    fields = [
+        'answer_text',
+        'is_right'
+    ]
+
+
 @admin.register(models.Question)
-class 
+class QuestionAdmin(admin.ModelAdmin):
+    fields =[
+        'title',
+        'quiz'
+    ]
+    list_display = [
+        'title',
+        'quiz'
+
+    ]
+    inlines = [
+        AnswerInlineMode,
+    ]
+
+
+@admin.register(models.Answer)
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = [
+        'answer_text',
+        'is_right',
+        'questions'
+    ]
